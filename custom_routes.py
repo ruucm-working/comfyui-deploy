@@ -419,9 +419,11 @@ async def update_run_with_output(prompt_id, data, node_id=None):
             "output_data": data
         }
 
+        print('\ndata (1)', data)
+
         try:
             have_upload = 'images' in data or 'files' in data or 'gifs' in data
-            print("\nhave_upload", have_upload, node_id)
+            print("\nhave_upload (1)", have_upload, node_id)
 
             if have_upload:
                 await update_file_status(prompt_id, data, True, node_id=node_id)
