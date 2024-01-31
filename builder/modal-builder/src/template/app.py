@@ -159,7 +159,7 @@ def run(input: Input):
     import subprocess
     import time
     # Make sure that the ComfyUI API is available
-    print(f"comfy-modal - check server")
+    print(f"comfy-modal - check server (1)")
 
     command = ["python", "main.py",
                "--disable-auto-launch", "--disable-metadata"]
