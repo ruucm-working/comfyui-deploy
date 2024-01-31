@@ -77,7 +77,7 @@ if not deploy_test:
 # Time to wait between API check attempts in milliseconds
 COMFY_API_AVAILABLE_INTERVAL_MS = 500
 # Maximum number of API check attempts
-COMFY_API_AVAILABLE_MAX_RETRIES = 500
+COMFY_API_AVAILABLE_MAX_RETRIES = 5000
 # Time to wait between poll attempts in milliseconds
 COMFY_POLLING_INTERVAL_MS = 250
 # Maximum number of poll attempts
@@ -107,7 +107,7 @@ def check_server(url, retries=50, delay=500):
 
             # If the response status code is 200, the server is up and running
             if response.status_code == 200:
-                print(f"runpod-worker-comfy - API is reachable")
+                print(f"runpod-worker-comfy (1) - API is reachable")
                 return True
         except requests.RequestException as e:
             # If an exception occurs, the server may not be ready
@@ -119,7 +119,7 @@ def check_server(url, retries=50, delay=500):
         time.sleep(delay / 1000)
 
     print(
-        f"runpod-worker-comfy - Failed to connect to server at {url} after {retries} attempts."
+        f"runpod-worker-comfy (1) - Failed to connect to server at {url} after {retries} attempts with {delay} intervals."
     )
     return False
 
