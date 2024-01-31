@@ -75,7 +75,7 @@ if not deploy_test:
     )
 
 # Time to wait between API check attempts in milliseconds
-COMFY_API_AVAILABLE_INTERVAL_MS = 50
+COMFY_API_AVAILABLE_INTERVAL_MS = 500
 # Maximum number of API check attempts
 COMFY_API_AVAILABLE_MAX_RETRIES = 500
 # Time to wait between poll attempts in milliseconds
