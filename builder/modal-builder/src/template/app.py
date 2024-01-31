@@ -107,7 +107,7 @@ def check_server(url, retries=50, delay=500):
 
             # If the response status code is 200, the server is up and running
             if response.status_code == 200:
-                print(f"runpod-worker-comfy (1) - API is reachable")
+                print(f"runpod-worker-comfy (2) - API is reachable")
                 return True
         except requests.RequestException as e:
             # If an exception occurs, the server may not be ready
@@ -119,7 +119,7 @@ def check_server(url, retries=50, delay=500):
         time.sleep(delay / 1000)
 
     print(
-        f"runpod-worker-comfy (1) - Failed to connect to server at {url} after {retries} attempts with {delay} intervals."
+        f"runpod-worker-comfy (2) - Failed to connect to server at {url} after {retries} attempts with {delay} intervals."
     )
     return False
 
@@ -159,7 +159,7 @@ def run(input: Input):
     import subprocess
     import time
     # Make sure that the ComfyUI API is available
-    print(f"comfy-modal - check server (1)")
+    print(f"comfy-modal - check server (2)")
 
     command = ["python", "main.py",
                "--disable-auto-launch", "--disable-metadata"]

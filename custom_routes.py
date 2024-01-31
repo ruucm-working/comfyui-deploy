@@ -425,10 +425,10 @@ async def update_run_with_output(prompt_id, data, node_id=None):
                 "run_id": prompt_id
             }
 
-        print('\ndata (2)', data)
+        print('\ndata (3)', data)
 
         try:
-            print("\nhave_upload (2)", have_upload, node_id)
+            print("\nhave_upload (3)", have_upload, node_id)
 
             if have_upload:
                 await update_file_status(prompt_id, data, True, node_id=node_id)
