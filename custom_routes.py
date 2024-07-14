@@ -320,7 +320,7 @@ def have_pending_upload(prompt_id):
         print("have pending upload ", len(prompt_metadata[prompt_id]['uploading_nodes']))
         return True
 
-    print("no pending upload")
+    print("no pending upload (07/14/2024)")
     return False
 
 def mark_prompt_done(prompt_id):
