@@ -1252,7 +1252,7 @@ async def upload_file(prompt_id, filename, subfolder=None, content_type="image/p
         }
         
         # if ok.get('include_acl') is True:
-            # headers["x-amz-acl"] = "public-read"
+        headers["x-amz-acl"] = "public-read"
         
         # response = requests.put(ok.get("url"), headers=headers, data=data)
         response = await async_request_with_retry('PUT', ok.get("url"), headers=headers, data=data)
