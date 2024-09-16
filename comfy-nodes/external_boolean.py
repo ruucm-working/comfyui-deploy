@@ -1,23 +1,15 @@
-import folder_paths
-from PIL import Image, ImageOps
-import numpy as np
-import torch
-
-class ComfyUIDeployExternalText:
-    @classmethod
+class ComfyUIDeployExternalBoolean:
+    @classmethod    
     def INPUT_TYPES(s):
         return {
             "required": {
                 "input_id": (
                     "STRING",
-                    {"multiline": False, "default": "input_text"},
+                    {"multiline": False, "default": "input_bool"},
                 ),
+                "default_value": ("BOOLEAN", {"default": False})
             },
             "optional": {
-                "default_value": (
-                    "STRING",
-                    {"multiline": True, "default": ""},
-                ),
                 "display_name": (
                     "STRING",
                     {"multiline": False, "default": ""},
@@ -29,16 +21,15 @@ class ComfyUIDeployExternalText:
             }
         }
 
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("text",)
-
+    RETURN_TYPES = ("BOOLEAN",)
+    RETURN_NAMES = ("bool_value",)
+    
     FUNCTION = "run"
-
-    CATEGORY = "text"
-
+    
     def run(self, input_id, default_value=None, display_name=None, description=None):
+        print(f"Node '{input_id}' processing with switch set to {default_value}")
         return [default_value]
+    
 
-
-NODE_CLASS_MAPPINGS = {"ComfyUIDeployExternalText": ComfyUIDeployExternalText}
-NODE_DISPLAY_NAME_MAPPINGS = {"ComfyUIDeployExternalText": "External Text (ComfyUI Deploy)"}
+NODE_CLASS_MAPPINGS = {"ComfyUIDeployExternalBoolean": ComfyUIDeployExternalBoolean}
+NODE_DISPLAY_NAME_MAPPINGS = {"ComfyUIDeployExternalBoolean": "External Boolean (ComfyUI Deploy)"}

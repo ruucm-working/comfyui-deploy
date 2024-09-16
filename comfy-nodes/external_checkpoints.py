@@ -5,6 +5,12 @@ import torch
 import folder_paths
 from tqdm import tqdm
 
+class AnyType(str):
+    def __ne__(self, __value: object) -> bool:
+        return False
+        
+WILDCARD = AnyType("*")
+
 class ComfyUIDeployExternalCheckpoint:
     @classmethod
     def INPUT_TYPES(s):
@@ -16,23 +22,31 @@ class ComfyUIDeployExternalCheckpoint:
                 ),
             },
             "optional": {
-                "default_checkpoint_name": (folder_paths.get_filename_list("checkpoints"), ),
+                "default_value": (folder_paths.get_filename_list("checkpoints"), ),
+                "display_name": (
+                    "STRING",
+                    {"multiline": False, "default": ""},
+                ),
+                "description": (
+                    "STRING",
+                    {"multiline": True, "default": ""},
+                ),
             }
         }
 
-    RETURN_TYPES = (folder_paths.get_filename_list("checkpoints"),)
+    RETURN_TYPES = (WILDCARD,)
     RETURN_NAMES = ("path",)
 
     FUNCTION = "run"
 
     CATEGORY = "deploy"
 
-    def run(self, input_id, default_checkpoint_name=None):
+    def run(self, input_id, default_value=None, display_name=None, description=None):
         import requests
         import os
         import uuid
 
-        if input_id and input_id.startswith('http'):
+        if default_value.startswith('http'):
             unique_filename = str(uuid.uuid4()) + ".safetensors"
             print(unique_filename)
             print(folder_paths.folder_names_and_paths["checkpoints"][0][0])
@@ -59,7 +73,7 @@ class ComfyUIDeployExternalCheckpoint:
                     out_file.write(chunk)
             return (unique_filename,)
         else:
-            return (default_checkpoints_name,)
+            return (default_value,)
 
 
 NODE_CLASS_MAPPINGS = {

@@ -75,10 +75,11 @@ Major areas
 3. `bun i`
 4. Start docker
 5. `cp .env.example .env.local`
-6. Repace `JWT_SECRET` with `openssl rand -hex 32`
+6. Replace `JWT_SECRET` with `openssl rand -hex 32`
 7. Get a local clerk dev key for `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`
 8. Keep a terminal live for `bun run db-dev`
-9. Finally start the next server with `bun dev`
+9. Execute the local migration to create the initial data `bun run migrate-local`
+10. Finally start the next server with `bun dev`
 
 **Schema Changes**
 
@@ -91,6 +92,10 @@ Major areas
 - oss/acc
 
 # Self Hosting with Vercel
+
+[![Video](https://img.mytsi.org/i/nFOG479.png)](https://www.youtube.com/watch?v=hWvsEY1cS2M)
+Tutorial Created by [Ross](https://github.com/rossman22590) and [Syn](https://github.com/mortlsyn)
+
 
 Build command
 

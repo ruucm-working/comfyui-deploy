@@ -90,14 +90,19 @@ export const createRun = withServerPromise(
         Object.entries(workflow_api).forEach(([_, node]) => {
           if (node.inputs["input_id"] === key) {
             node.inputs["input_id"] = inputs[key];
+            // Fix for external text default value
+            if (node.class_type == "ComfyUIDeployExternalText") {
+              node.inputs["default_value"] = inputs[key];
+            }
           }
+
         });
       }
     }
 
     let prompt_id: string | undefined = undefined;
     const shareData = {
-      workflow_api: workflow_api,
+      workflow_api_raw: workflow_api,
       status_endpoint: `${origin}/api/update-run`,
       file_upload_endpoint: `${origin}/api/file-upload`,
     };
