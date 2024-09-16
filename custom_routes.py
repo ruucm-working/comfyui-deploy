@@ -437,6 +437,11 @@ async def comfy_deploy_run(request):
     return web.json_response(res, status=status)
 
 async def stream_prompt(data, token):
+    # print all data
+    print("data", data)
+
+    workflow_api_old = data.get("workflow_api")
+    print("workflow_api_old", workflow_api_old)
     # In older version, we use workflow_api, but this has inputs already swapped in nextjs frontend, which is tricky
     workflow_api = data.get("workflow_api_raw")
     print("workflow_api (2)", workflow_api)
